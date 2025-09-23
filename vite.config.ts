@@ -1,8 +1,15 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
-  base: "/nothing-community-flarum-client/",
   plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://nothing.community',
+        changeOrigin: true,
+        secure: false
+      }
+    }
+  }
 })
