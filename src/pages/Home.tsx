@@ -1,18 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
 import { getDiscussions } from '../api/flarum';
+import Banners from '../components/Banners';
+import News from '../components/News';
 
-const Home = () => {
+const Discussions = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['discussions'],
     queryFn: getDiscussions,
   });
 
   if (isLoading) {
-    return <div className="text-center p-8">Loading...</div>;
+    return <div className="text-center p-8">Loading discussions...</div>;
   }
 
   if (isError) {
-    return <div className="text-center p-8 text-red-500">Error fetching data</div>;
+    return <div className="text-center p-8 text-red-500">Error fetching discussions</div>;
   }
 
   const findUser = (userId) => {
@@ -36,6 +38,16 @@ const Home = () => {
           </div>
         ))}
       </div>
+    </div>
+  );
+};
+
+const Home = () => {
+  return (
+    <div>
+      <Banners />
+      <News />
+      <Discussions />
     </div>
   );
 };

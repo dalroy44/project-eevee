@@ -13,3 +13,13 @@ export const getDiscussions = async () => {
   });
   return response.data;
 };
+
+export const getBanners = async () => {
+  const response = await apiClient.get('/banners');
+  return response.data;
+};
+
+export const getNews = async () => {
+  const response = await apiClient.get('/news');
+  return response.data;
+};
